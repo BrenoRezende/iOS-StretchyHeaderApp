@@ -14,6 +14,8 @@ class HeaderView: UICollectionReusableView {
         super.init(frame: frame)
         
         backgroundColor = .blue
+        
+        // TODO: create an uiimageview and add anchor to it
     }
     
     required init?(coder aDecoder: NSCoder) {

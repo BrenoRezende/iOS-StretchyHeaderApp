@@ -63,6 +63,11 @@ class StretchyHeaderController: UICollectionViewController, UICollectionViewDele
             layout.minimumLineSpacing = padding
         }
         
+        collectionView.contentInsetAdjustmentBehavior = .never
         collectionView.backgroundColor = .white
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
 }
