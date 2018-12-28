@@ -13,7 +13,6 @@ class HeaderView: UICollectionReusableView {
     let imageView: UIImageView = {
         let iv = UIImageView(image: #imageLiteral(resourceName: "monkey"))
         iv.contentMode = .scaleAspectFill
-        iv.translatesAutoresizingMaskIntoConstraints = false
         return iv
     }()
     
@@ -23,11 +22,30 @@ class HeaderView: UICollectionReusableView {
         backgroundColor = .blue
 
         addSubview(imageView)
+        fillSuperview(view: imageView)
         
-        imageView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
-        imageView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
-        imageView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
-        imageView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+        setupBlurEffect()
+    }
+    
+    var animator: UIViewPropertyAnimator!
+    
+    fileprivate func setupBlurEffect() {
+        animator = UIViewPropertyAnimator(duration: 3.0, curve: .linear, animations: { [weak self] in
+            let blurEffect = UIBlurEffect(style: .regular)
+            let visualEffectView = UIVisualEffectView(effect: blurEffect)
+            
+            self?.addSubview(visualEffectView)
+            self?.fillSuperview(view: visualEffectView)
+        })        
+    }
+    
+    private func fillSuperview(view: UIView) {
+        view.translatesAutoresizingMaskIntoConstraints = false
+        
+        view.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+        view.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+        view.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+        view.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
     }
     
     required init?(coder aDecoder: NSCoder) {
