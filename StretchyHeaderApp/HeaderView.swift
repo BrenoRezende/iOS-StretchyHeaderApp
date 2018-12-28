@@ -10,12 +10,24 @@ import UIKit
 
 class HeaderView: UICollectionReusableView {
     
+    let imageView: UIImageView = {
+        let iv = UIImageView(image: #imageLiteral(resourceName: "monkey"))
+        iv.contentMode = .scaleAspectFill
+        iv.translatesAutoresizingMaskIntoConstraints = false
+        return iv
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
         backgroundColor = .blue
+
+        addSubview(imageView)
         
-        // TODO: create an uiimageview and add anchor to it
+        imageView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+        imageView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+        imageView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+        imageView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
     }
     
     required init?(coder aDecoder: NSCoder) {
